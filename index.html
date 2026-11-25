@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurora Sky | Live Weather & AQI Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="dashboard-wrapper">
+    <!-- Top Header & Search -->
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-icon">🌤️</span>
+        <div>
+          <h1>Aurora Sky</h1>
+          <p>Live Weather & Air Quality</p>
+        </div>
+      </div>
+
+      <form id="search-form" class="search-box">
+        <input
+          type="text"
+          id="city-input"
+          placeholder="Search city (e.g., Visakhapatnam, Mumbai, London)..."
+          autocomplete="off"
+          required
+        />
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+
+      <div class="unit-toggle">
+        <button id="celsius-btn" class="unit-btn active">°C</button>
+        <button id="fahrenheit-btn" class="unit-btn">°F</button>
+      </div>
+    </header>
+
+    <!-- Quick City Pills -->
+    <div class="recent-cities" id="recent-cities"></div>
+
+    <!-- Loading & Error States -->
+    <div id="loader" class="status-msg hidden">Fetching live atmospheric data...</div>
+    <div id="error-msg" class="status-msg error hidden"></div>
+
+    <!-- Main Weather Grid -->
+    <section id="weather-content" class="weather-grid">
+      <!-- Current Weather Hero Card -->
+      <article class="card hero-card">
+        <div class="location-row">
+          <div>
+            <h2 id="city-name">Visakhapatnam, India</h2>
+            <p id="current-date" class="muted-text">--</p>
+          </div>
+          <span class="live-badge">● LIVE</span>
+        </div>
+
+        <div class="temp-showcase">
+          <div class="weather-emoji" id="weather-icon">☀️</div>
+          <div class="temp-main">
+            <span id="current-temp">--°</span>
+            <p id="weather-desc">Clear Sky</p>
+          </div>
+        </div>
+
+        <div class="metrics-strip">
+          <div class="metric-item">
+            <span class="metric-label">Feels Like</span>
+            <span class="metric-value" id="feels-like">--°</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Humidity</span>
+            <span class="metric-value" id="humidity">--%</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Wind Speed</span>
+            <span class="metric-value" id="wind-speed">-- km/h</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Air Quality & Sun Details Card -->
+      <article class="card aqi-card">
+        <h3>Air Quality & Highlights</h3>
+        <div class="aqi-box">
+          <div class="aqi-header">
+            <span>US Air Quality Index</span>
+            <span id="aqi-badge" class="aqi-status good">Good</span>
+          </div>
+          <div class="aqi-score" id="aqi-value">--</div>
+          <p class="muted-text" id="aqi-advice">Clean air — great for outdoor activities.</p>
+        </div>
+
+        <div class="highlights-grid">
+          <div class="highlight-tile">
+            <span class="tile-title">🌅 Sunrise</span>
+            <strong id="sunrise-time">--:--</strong>
+          </div>
+          <div class="highlight-tile">
+            <span class="tile-title">🌇 Sunset</span>
+            <strong id="sunset-time">--:--</strong>
+          </div>
+          <div class="highlight-tile">
+            <span class="tile-title">🧭 Wind Dir</span>
+            <strong id="wind-dir">--°</strong>
+          </div>
+          <div class="highlight-tile">
+            <span class="tile-title">🌧️ Rain Chance</span>
+            <strong id="rain-prob">--%</strong>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5-Day Forecast Strip -->
+      <article class="card forecast-card">
+        <h3>5-Day Forecast</h3>
+        <div class="forecast-list" id="forecast-list"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
